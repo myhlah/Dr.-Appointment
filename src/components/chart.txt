@@ -1,0 +1,66 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Users from './components/User'
+import CreateUser from './components/CreateUser'
+import UpdateUser from './components/UpdateUser'
+import Dashboard from './components/Dashboard'
+import Appointments from './components/Appointments'
+import Patients from './components/Patients'
+import Profile from './components/Profile'
+import Login from './components/Login'
+import PieChart from './components/PieChart'
+import Chart from 'chart.js/auto'
+import { useEffect, useRef } from 'react'
+
+function App() {
+
+    const chartRef =useRef(null)
+    const chartInstance = useRef(null)
+
+useEffect(()=>{
+    if (chartInstance.current){
+        chartInstance.current.destroy()
+    }
+    const myChartRef = chartRef.current.getContext('2d');
+
+    chartInstance.current=new Chart(myChartRef, {
+        type:"pie",
+        data: {
+            labels:["label 1, label 2, label 3"],
+            datasets:[{
+                data:[300,50,100],
+                backgroundColor:[
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86'
+                ],
+            }]
+        }
+    })
+    return()=>{
+        if(chartInstance.cyrrent){
+            chartInstance.current.destroy()
+        }
+    }
+},[]);
+
+    return( 
+        <div className="App">
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Users />}></Route>
+                    <Route path='/dashboard' element={<Dashboard />}></Route>
+                    <Route path='/appointments' element={<Appointments />}></Route>
+                    <Route path='/patients' element={<Patients />}></Route>
+                    <Route path='/profile' element={<Profile />}></Route>
+                    <Route path='/login' element={<Login />}></Route>
+                    <Route path='/create' element={<CreateUser />}></Route>
+                    <Route path='/edit/:id' element={<UpdateUser />}></Route>
+                </Routes>
+            </BrowserRouter>
+            <canvas ref={chartRef} style={{width:'200px', height:'100px'}}/>
+        </div>
+        
+    )
+}
+
+export default App  
