@@ -1,1 +1,2 @@
 # ITD103-CS1
+Dr. Appointment is a platform designed to streamline the appointment booking process for healthcare providers and their patients. With Dr. Appointment, doctors or their assistants can efficiently schedule appointments on behalf of patients, ensuring seamless coordination and optimal use of time. This intuitive platform allows healthcare professionals to easily manage their schedules and allocate appointment slots based on availability and patient needs.
